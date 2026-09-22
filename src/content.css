@@ -1,0 +1,49 @@
+.remanga-card-status-host {
+    position: relative !important;
+}
+
+.remanga-card-status {
+    position: absolute;
+    z-index: 9999;
+    top: 8px;
+    left: 8px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 26px;
+    padding: 4px 9px;
+
+    border-radius: 999px;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+
+    pointer-events: none;
+
+    background: #111;
+    color: #fff;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .18);
+}
+
+.remanga-card-status--premium {
+    background: #e11d48;
+}
+
+.remanga-card-status--semi-premium {
+    background: #f59e0b;
+    color: #111;
+}
+
+.remanga-card-status--one-and-half {
+    background: #7c3aed;
+}
+
+.remanga-card-status--event {
+    background: #059669;
+}

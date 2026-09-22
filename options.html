@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReTrade — Настройки</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-width: 320px;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        .page {
+            width: min(680px, calc(100% - 32px));
+            margin: 48px auto;
+        }
+
+        .card {
+            padding: 28px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 24px;
+            line-height: 1.25;
+        }
+
+        .description {
+            margin: 0 0 24px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        select {
+            width: 100%;
+            min-height: 42px;
+            padding: 8px 12px;
+            border: 1px solid #bbb;
+            border-radius: 8px;
+            background: #fff;
+            color: inherit;
+            font: inherit;
+        }
+
+        .status {
+            min-height: 22px;
+            margin-top: 12px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <section class="card">
+            <h1>ReTrade</h1>
+            <p class="description">
+                Выберите автора списка, который будет использоваться
+                для отображения бейджей карточек.
+            </p>
+
+            <label for="statusSet">
+                Список от
+            </label>
+
+            <select id="statusSet"></select>
+
+            <div
+                class="status"
+                id="statusMessage"
+                aria-live="polite"
+            ></div>
+        </section>
+    </main>
+
+    <script src="src/config.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>

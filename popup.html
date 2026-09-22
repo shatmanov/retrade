@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReTrade</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <main class="popup">
+        <div class="header">
+            <div class="logo" aria-hidden="true"></div>
+
+            <div class="header-content">
+                <h1>ReTrade</h1>
+                <p>Настройки расширения</p>
+            </div>
+        </div>
+
+        <section class="setting">
+            <label for="statusSet">Список от</label>
+
+            <select id="statusSet">
+                <option value="">Загрузка...</option>
+            </select>
+
+            <p
+                class="message"
+                id="statusMessage"
+                aria-live="polite"
+            ></p>
+        </section>
+
+        <footer class="footer">
+            <span class="version" id="version"></span>
+        </footer>
+    </main>
+
+    <script src="src/config.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>
