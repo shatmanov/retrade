@@ -73,30 +73,29 @@ jobs:
                   VERSION="${{ steps.version.outputs.version }}"
                   ZIP_NAME="retrade-v${VERSION}.zip"
 
-                  mkdir -p build
+                  mkdir -p build/retrade
 
-                  cp manifest.json build/
-                  cp popup.html build/
-                  cp popup.js build/
-                  cp -r src build/
-                  cp -r icons build/
+                  cp -r manifest.json build/retrade/
+                  cp -r popup.html build/retrade/
+                  cp -r popup.js build/retrade/
+                  cp -r src build/retrade/
+                  cp -r icons build/retrade/
 
                   if [[ -f options.html ]]; then
-                      cp options.html build/
+                      cp options.html build/retrade/
                   fi
 
                   if [[ -f options.js ]]; then
-                      cp options.js build/
+                      cp options.js build/retrade/
                   fi
 
                   (
                       cd build
-                      zip -r "../${ZIP_NAME}" .
+                      zip -r "../${ZIP_NAME}" retrade
                   )
 
                   echo "Created ${ZIP_NAME}"
-                  echo "Contents:"
-                  unzip -l "../${ZIP_NAME}"
+                  ls -lh "${ZIP_NAME}"
 
             - name: Upload build artifact
               uses: actions/upload-artifact@v4
