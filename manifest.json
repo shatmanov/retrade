@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "ReTrade",
     "short_name": "ReTrade",
-    "version": "0.0.4",
+    "version": "0.0.2",
     "description": "Показывает ценность карт ReManga для обмена.",
     "permissions": [
         "storage"

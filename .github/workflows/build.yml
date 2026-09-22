@@ -1,0 +1,119 @@
+name: Build ReTrade
+
+on:
+    push:
+        branches:
+            - main
+        tags:
+            - "v*.*.*"
+
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+jobs:
+    build:
+        name: Build extension
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6
+
+            - name: Validate manifest
+              shell: bash
+              run: |
+                  python - <<'PY'
+                  import json
+                  from pathlib import Path
+
+                  manifest_path = Path("manifest.json")
+
+                  if not manifest_path.exists():
+                      raise SystemExit("manifest.json not found")
+
+                  with manifest_path.open(encoding="utf-8") as f:
+                      manifest = json.load(f)
+
+                  required_files = [
+                      "manifest.json",
+                      "popup.html",
+                      "popup.js",
+                      "src/config.js",
+                      "src/content.js",
+                      "src/content.css",
+                      "src/interceptor.js",
+                  ]
+
+                  for file in required_files:
+                      if not Path(file).exists():
+                          raise SystemExit(f"Required file not found: {file}")
+
+                  print("Manifest and required files are valid.")
+                  print(f"Extension version: {manifest.get('version')}")
+                  PY
+
+            - name: Determine version
+              id: version
+              shell: bash
+              run: |
+                  if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
+                      VERSION="${GITHUB_REF_NAME#v}"
+                  else
+                      VERSION="$(python -c 'import json; print(json.load(open("manifest.json", encoding="utf-8"))["version"])')"
+                  fi
+
+                  echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+                  echo "ReTrade version: ${VERSION}"
+
+            - name: Create ZIP
+              shell: bash
+              run: |
+                  VERSION="${{ steps.version.outputs.version }}"
+                  ZIP_NAME="retrade-v${VERSION}.zip"
+
+                  mkdir -p build/retrade
+
+                  cp -r manifest.json build/retrade/
+                  cp -r popup.html build/retrade/
+                  cp -r popup.js build/retrade/
+                  cp -r src build/retrade/
+                  cp -r icons build/retrade/
+
+                  if [[ -f options.html ]]; then
+                      cp options.html build/retrade/
+                  fi
+
+                  if [[ -f options.js ]]; then
+                      cp options.js build/retrade/
+                  fi
+
+                  (
+                      cd build
+                      zip -r "../${ZIP_NAME}" retrade
+                  )
+
+                  echo "Created ${ZIP_NAME}"
+                  ls -lh "${ZIP_NAME}"
+
+            - name: Upload build artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: retrade-v${{ steps.version.outputs.version }}
+                  path: retrade-v${{ steps.version.outputs.version }}.zip
+                  if-no-files-found: error
+
+            - name: Create GitHub Release
+              if: startsWith(github.ref, 'refs/tags/v')
+              env:
+                  GH_TOKEN: ${{ github.token }}
+              shell: bash
+              run: |
+                  VERSION="${{ steps.version.outputs.version }}"
+                  ZIP_NAME="retrade-v${VERSION}.zip"
+
+                  gh release create "${GITHUB_REF_NAME}" \
+                      "${ZIP_NAME}" \
+                      --title "ReTrade ${GITHUB_REF_NAME}" \
+                      --generate-notes
