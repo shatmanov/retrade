@@ -104,7 +104,7 @@ jobs:
                   path: retrade-v${{ steps.version.outputs.version }}.zip
                   if-no-files-found: error
 
-            - name: Create GitHub Release
+            - name: Upload ZIP to GitHub Release
               if: startsWith(github.ref, 'refs/tags/v')
               env:
                   GH_TOKEN: ${{ github.token }}
@@ -113,7 +113,7 @@ jobs:
                   VERSION="${{ steps.version.outputs.version }}"
                   ZIP_NAME="retrade-v${VERSION}.zip"
 
-                  gh release create "${GITHUB_REF_NAME}" \
+                  gh release upload \
+                      "${GITHUB_REF_NAME}" \
                       "${ZIP_NAME}" \
-                      --title "ReTrade ${GITHUB_REF_NAME}" \
-                      --generate-notes
+                      --clobber
