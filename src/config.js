@@ -80,10 +80,12 @@
                     
 
                     // Полупрем
+                    8154: "semi-premium", // Azur Lane: Start Building!
                     97305: "semi-premium", // GODDESS OF VICTORY: NIKKE Официальный комикс
                     97601: "semi-premium", // Identity V начальная школа
                     153656: "semi-premium", // Reverse:1999
                     102248: "semi-premium", // ReZero Жизнь с нуля в альтернативном мире Часть Пятая Город Воды и Баллада о Героях
+                    154565: "semi-premium", // The Elder Scrolls: Герои Хромой Телеги
                     214: "semi-premium", // Адский рай
                     272: "semi-premium", // Атака титанов
                     337: "semi-premium", // Блич
@@ -92,6 +94,7 @@
                     98: "semi-premium", // Ванпанчмен
                     216: "semi-premium", // Великий из бродячих псов
                     13971: "semi-premium", // Визуальные и сюжетные файлы - артбук "Берсерк"
+                    157955: "semi-premium", // Виртуальные Ютуберы
                     153377: "semi-premium", // Властелин колец
                     71: "semi-premium", // Восхождение героя щита
                     310: "semi-premium", // Врата штейна
@@ -125,7 +128,7 @@
                     13480: "semi-premium", // Секиро: Ханбэй Бессмертный
                     14128: "semi-premium", // Синяя Тюрьма: Блю Лок (фанатская цветная версия)
                     381: "semi-premium", // Стальной алхимик
-                    156194: "semi-premium", // Судьба
+                    109566: "semi-premium", // Страна самоцветов в цвете
                     155852: "semi-premium", // Суд над Девочкой - Волшебницей
                     155163: "semi-premium", // Темнейшее Подземелье: Хроники
                     266: "semi-premium", // Темный дворецкий
@@ -133,18 +136,12 @@
                     118595: "semi-premium", // Уличный боец
                     271: "semi-premium", // Хантер х Хантер
                     111: "semi-premium", // Хоримия
+                    156581: "semi-premium", // Хроники Влюблённости
+                    288: "semi-premium", // Чёрный Клевер
                     2327: "semi-premium", // Элисед
-                    153719: "semi-premium", // Я стал богом в игре ужасов
-
-                    157955: "semi-premium", // Виртуальные Ютуберы
 
                     // Полуторник
-                    374: "one-and-half",
-                    156194: "one-and-half",
-                    314: "one-and-half",
-                    155628: "one-and-half",
-                    156756: "one-and-half",
-                    155472: "one-and-half",
+                    111111: "one-and-half", // 
 
                     // Ивентовые
                     100576: "event"
